@@ -64,32 +64,21 @@ class ExtractData:
 		finally:
 			print("Pmax values data has been stored to the list")
 
-	# def check_pmax_data(self):
-	# 	for value in self.pmax_values:
-	# 		print(value,type(value))
 class PlotData(ExtractData):
 
-	def __init__(self,ext_class):
-		self.pmax_values = ext_class.pmax_values
+	def __init__(self,ExtractData):
+		self.pmax_values = ExtractData.pmax_values
 
-
-	# def print_data(self):
-	# 	print("printing as objected inherated")
-	# 	for item in self.pmax_values:
-	# 		print()
-	# 		print(item)
 	def plot_data_to_graph(self):
 		data = self.pmax_values
 		plt.xlabel("X-Axis")
 		plt.ylabel("Y-Axis")
-		plt.title("This is a test graph")
-
-		for item in data:
-			plt.plot(item)
+		plt.title("Pmax value graph")
+		plt.plot([x for x in data],"ro")
 		plt.legend()
 		plt.show()
 def main():
-	hardCodedPath = "/home/atamayo/Scripts/test_data"
+	hardCodedPath = "C:\\Users\\avale\\Desktop\\test_data"
 	#user_path = sys.argv[1]
 
 	c = ExtractData(hardCodedPath)
@@ -97,9 +86,6 @@ def main():
 	try:
 		c.check_for_text_files(hardCodedPath)
 		c.data_parsing()
-		#c.check_pmax_data()
-
-
 		p.plot_data_to_graph()
 	except ValueError as e:
 		print(e)
